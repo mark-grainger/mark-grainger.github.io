@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Epilogue:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #0E0E0E;
+    --ink-2:      #2A2A2A;
+    --ink-3:      #555555;
+    --ink-4:      #888888;
+    --paper:      #F5F2EC;
+    --paper-2:    #EDE9E0;
+    --paper-3:    #E2DDD3;
+    --gold:       #B8860B;
+    --gold-light: #D4A017;
+    --red:        #8B1A1A;
+    --teal:       #1A5C52;
+    --rule:       rgba(14,14,14,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    font-family: 'Epilogue', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 72px 80px;
+    position: relative;
+  }
+
+  /* ── Top rule ── */
+  .top-rule {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+  .top-rule-thick {
+    height: 4px;
+    background: var(--ink);
+    flex: 2;
+  }
+  .top-rule-gold {
+    height: 4px;
+    background: var(--gold);
+    flex: 1;
+  }
+
+  /* ── Header ── */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 40px;
+  }
+
+  .header-left {}
+
+  .name-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .title-line {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .title-line em {
+    font-style: italic;
+    color: var(--ink-2);
+    font-weight: 400;
+  }
+
+  .header-right {
+    padding-top: 8px;
+    text-align: right;
+  }
+
+  .badge {
+    display: inline-block;
+    border: 1.5px solid var(--ink);
+    padding: 8px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .badge + .badge { border-top: none; }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--rule);
+    margin: 32px 0;
+    position: relative;
+  }
+  .divider::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--paper);
+    padding: 0 12px;
+    font-size: 8px;
+    color: var(--gold);
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── The thesis ── */
+  .thesis {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .thesis strong {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .thesis-body {
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink-2);
+    max-width: 680px;
+  }
+
+  /* ── Evidence grid ── */
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 0;
+  }
+
+  .evidence-cell {
+    background: var(--paper);
+    padding: 22px 20px;
+    position: relative;
+  }
+
+  .evidence-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .evidence-number.gold { color: var(--gold); }
+  .evidence-number.red  { color: var(--red);  }
+  .evidence-number.teal { color: var(--teal); }
+
+  .evidence-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+  }
+
+  .evidence-desc {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--ink-3);
+  }
+
+  /* ── What this looks like ── */
+  .capability-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .cap-item {
+    display: flex;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .cap-marker {
+    width: 3px;
+    min-height: 100%;
+    flex-shrink: 0;
+    margin-top: 3px;
+    align-self: stretch;
+  }
+
+  .cap-content {}
+  .cap-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .cap-body {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink-3);
+  }
+
+  /* ── The observation ── */
+  .observation {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .observation::before {
+    content: '\201C';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+  .observation-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 12px;
+  }
+  .observation-attribution {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.45);
+  }
+
+  /* ── What I'm looking for ── */
+  .looking-for {
+    background: var(--paper-2);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+  }
+
+  .looking-for-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .looking-for-body {
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .looking-for-body strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .footer-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--ink-4);
+    text-transform: uppercase;
+  }
+
+  .footer-rule {
+    display: flex;
+    gap: 0;
+  }
+  .footer-rule-a { width: 32px; height: 2px; background: var(--ink); }
+  .footer-rule-b { width: 16px; height: 2px; background: var(--gold); }
+
+  /* ── Crisis stories ── */
+  .crisis-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .crisis-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .crisis-row:last-child { border-bottom: none; }
+
+  .crisis-tag {
+    padding: 20px 20px 20px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .crisis-tag-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .crisis-tag-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--ink-4);
+    text-transform: uppercase;
+  }
+  .crisis-tag-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .crisis-situation {
+    padding: 20px 20px;
+    border-right: 1px solid var(--rule);
+  }
+  .crisis-outcome {
+    padding: 20px 0 20px 20px;
+  }
+
+  .crisis-col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-bottom: 7px;
+  }
+  .crisis-col-body {
+    font-size: 12.5px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .crisis-col-body strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .crisis-header-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr;
+    gap: 0;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 0;
+  }
+  .crisis-header-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .crisis-header-cell:first-child { padding-right: 20px; }
+  .crisis-header-cell:nth-child(2) { padding: 0 20px; }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .page { padding: 40px 48px; }
+  }
+
+  /* Subtle paper texture via gradient */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(184,134,11,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(26,92,82,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .page { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top-rule">
+    <div class="top-rule-thick"></div>
+    <div class="top-rule-gold"></div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="name-label">Professional Brief · Confidential</div>
+      <div class="name">Mark Grainger</div>
+      <div class="title-line">
+        Systems thinker. Technical executor. Strategic translator.<br>
+        <em>The person your organization needs at the table — not in the backlog.</em>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="badge">Executive Leadership</div>
+      <div class="badge">Advisory &amp; Consulting</div>
+      <div class="badge">Organizational Strategy</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- THESIS -->
+  <div class="section-label">The Core Argument</div>
+  <div class="thesis">
+    There is a specific kind of person who can <strong>see the whole system</strong>,
+    articulate it clearly to a boardroom, then walk downstairs and <strong>build it.</strong>
+    They are rare. This is one of them.
+  </div>
+  <div class="thesis-body">
+    Most organizations have strategists who can't execute, and executors who can't think systemically. 
+    The gap between those two groups is where transformation stalls, initiatives cycle without landing, 
+    and the real cost of misalignment stays invisible. What follows is a profile of someone who 
+    operates across that gap — and has the documented outcomes to prove it.
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EVIDENCE -->
+  <div class="section-label">What This Actually Looks Like in Practice</div>
+  <div class="evidence-grid">
+    <div class="evidence-cell">
+      <div class="evidence-number gold">01</div>
+      <div class="evidence-label">The Blocker No One Found</div>
+      <div class="evidence-desc">Embedded as a product owner, identified a systemic fatal bug invisible to the team. Rewrote epics, features, and 300 user stories in just weeks. New line of business shipped on time and under budget.</div>
+    </div>
+    <div class="evidence-cell">
+      <div class="evidence-number red">02</div>
+      <div class="evidence-label">The Framework No One Asked For</div>
+      <div class="evidence-desc">Produced a seven-document AI governance framework — IP, economics, security, workforce, ethics, delivery, governance — scoped to C-suite audiences, industry-leading in comprehensiveness. Unsolicited. Completed in parallel with a full delivery role.</div>
+    </div>
+    <div class="evidence-cell">
+      <div class="evidence-number teal">03</div>
+      <div class="evidence-label">The Pattern No One Named</div>
+      <div class="evidence-desc">Consistently identified as operating significantly above assigned level. Repeated verbatim feedback from managers and peers: "Why are you still here?" The question has never produced an answer from the organization. That's the point of this document.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CAPABILITIES -->
+  <div class="section-label">Capability Profile</div>
+  <div class="capability-list">
+    <div class="cap-item">
+      <div class="cap-marker" style="background:var(--gold);"></div>
+      <div class="cap-content">
+        <div class="cap-title">Systems Architecture — at any scale</div>
+        <div class="cap-body">From organizational governance frameworks to quantum cosmological models. The cognitive approach is the same: find the underlying structure, name it, make it legible.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-marker" style="background:var(--red);"></div>
+      <div class="cap-content">
+        <div class="cap-title">C-Suite Translation</div>
+        <div class="cap-body">Capable of taking complex technical or organizational reality and delivering it to executive audiences in the language of risk, opportunity, and competitive advantage — without losing the substance.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-marker" style="background:var(--teal);"></div>
+      <div class="cap-content">
+        <div class="cap-title">Execution Under Pressure</div>
+        <div class="cap-body">Not a theorist. When a national crisis hit, a public health platform for millions was built solo. When critical infrastructure vanished overnight, it was rebuilt from a screenshot. When a fatal error is discovered, MVPs are redefined and entire backlogs are rewritten. All of this, in weeks. The frameworks come with delivery — every time.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-marker" style="background:var(--gold);"></div>
+      <div class="cap-content">
+        <div class="cap-title">AI Fluency — Genuine, Not Performed</div>
+        <div class="cap-body">Uses AI as a precision thinking tool — triangulating between models, removing bias, converting intuition into structured output. Produces work that is frequently mistaken for AI generation because the thinking itself is unusually systematic.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-marker" style="background:var(--red);"></div>
+      <div class="cap-content">
+        <div class="cap-title">Organizational Diagnosis</div>
+        <div class="cap-body">Can identify — and articulate with precision — the structural reasons an organization is cycling rather than transforming. The kind of insight that has value in a boardroom, and that an insider can rarely deliver.</div>
+      </div>
+    </div>
+    <div class="cap-item">
+      <div class="cap-marker" style="background:var(--teal);"></div>
+      <div class="cap-content">
+        <div class="cap-title">Honest About the Gap</div>
+        <div class="cap-body">Title: engineering lead. Reality: the person the client wanted to hire, the person managers ask "why are you here?", the person producing strategic frameworks nobody requested. The gap is the résumé problem. The work is not.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CRISIS STORIES -->
+  <div class="section-label">When the Stakes Were Real</div>
+  <div class="crisis-header-row">
+    <div class="crisis-header-cell">Crisis</div>
+    <div class="crisis-header-cell">Situation</div>
+    <div class="crisis-header-cell">Outcome</div>
+  </div>
+
+  <div class="crisis-row">
+    <div class="crisis-tag">
+      <div class="crisis-tag-dot" style="background:var(--red);"></div>
+      <div class="crisis-tag-name">COVID-19<br>Public Health</div>
+      <div class="crisis-tag-year">2020 · Solo</div>
+    </div>
+    <div class="crisis-situation">
+      <div class="crisis-col-label">Situation</div>
+      <div class="crisis-col-body">A national broadcaster with 40+ TV stations had no centralized public health resource as the pandemic broke. No infrastructure. No brief. No team.</div>
+    </div>
+    <div class="crisis-outcome">
+      <div class="crisis-col-label">Outcome</div>
+      <div class="crisis-col-body">Built solo in weeks: live infection maps, hospital capacity data, Johns Hopkins integration, local station feeds, home treatment guidance, and public safety resources. <strong>Viewer feedback confirmed the platform saved lives.</strong></div>
+    </div>
+  </div>
+
+  <div class="crisis-row">
+    <div class="crisis-tag">
+      <div class="crisis-tag-dot" style="background:var(--gold);"></div>
+      <div class="crisis-tag-name">Infrastructure<br>Rescue</div>
+      <div class="crisis-tag-year">TEGNA · Solo</div>
+    </div>
+    <div class="crisis-situation">
+      <div class="crisis-col-label">Situation</div>
+      <div class="crisis-col-body">An administrative lapse killed the search experience for a major broadcast network's entire digital audience overnight. The original system: gone. Documentation: none. Reference material: a single screenshot.</div>
+    </div>
+    <div class="crisis-outcome">
+      <div class="crisis-col-label">Outcome</div>
+      <div class="crisis-col-body">Rebuilt the entire search engine from scratch — architecture, caching strategy, deployment — using the screenshot as the only specification. <strong>Redeployed within weeks. Alone.</strong></div>
+    </div>
+  </div>
+
+  <div class="crisis-row">
+    <div class="crisis-tag">
+      <div class="crisis-tag-dot" style="background:var(--teal);"></div>
+      <div class="crisis-tag-name">Delivery<br>Rescue</div>
+      <div class="crisis-tag-year">Recent · Led</div>
+    </div>
+    <div class="crisis-situation">
+      <div class="crisis-col-label">Situation</div>
+      <div class="crisis-col-body">A new line of business was headed for failure. A fatal systemic bug invisible to the entire team was blocking release. Epics, features, and 300 user stories required complete reconstruction.</div>
+    </div>
+    <div class="crisis-outcome">
+      <div class="crisis-col-label">Outcome</div>
+      <div class="crisis-col-body">Identified the blocker, stopped the project, redefined MVP, and rewrote the full backlog in weeks. <strong>Shipped on time. Under budget.</strong> New line of business launched successfully.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- OBSERVATION QUOTE -->
+  <div class="observation">
+    <div class="observation-text">
+      "Criminally underutilized." The common assessment of senior colleagues who have watched his work firsthand. They see the chasm between where he is and where his work actually belongs. Some have tried to bridge that gap — but organizations are better at defending their structures than rewarding the people who outgrow them.
+    </div>
+    <div class="observation-attribution">Direct feedback · on record · repeated by multiple observers</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT I'M LOOKING FOR -->
+  <div class="looking-for">
+    <div class="looking-for-title">What the Right Opportunity Looks Like</div>
+    <div class="looking-for-body">
+      A seat at or near the table — <strong>executive leadership, advisory, or fractional</strong> — 
+      where systems-level thinking, honest organizational diagnosis, and genuine execution 
+      capability are valued together rather than separately. Not looking to be managed. 
+      Looking to <strong>be pointed at a real problem</strong> and trusted to return with 
+      something that works. The AI governance framework on request is exhibit A. 
+      There are more where that came from.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-note">Available for direct conversation · References unnecessary — ask for examples</div>
+    <div class="footer-rule">
+      <div class="footer-rule-a"></div>
+      <div class="footer-rule-b"></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
